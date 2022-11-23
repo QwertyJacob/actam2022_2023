@@ -56,11 +56,10 @@ let p5_instance = function(p5c){
             p5c.text("CLICK TO START", p5c.width / 2, p5c.height / 2);
         }else{
             //inject some graphics.
-            p5c.background(inner_tempo * 10);
+            p5c.background(inner_tempo * 50);
+            let c = p5c.color(255, 204, 0);
+            p5c.fill(c);
             let circle1 = p5c.circle(300, 300, 400);
-            c = color('magenta');
-            circle1.fill(c);
-
 
 
         }
