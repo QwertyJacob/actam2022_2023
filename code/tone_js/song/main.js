@@ -14,6 +14,7 @@ let main_bpm = 120;
 let main_loop_interval = "1m";
 let scaleNotes = Tonal.Scale.get("C4 major").notes;
 let ready = false;
+let inner_tempo;
 
 /*----------HELPER FUNCTIONS-------------*/
 let modulo = function(n, m) {
@@ -48,13 +49,19 @@ let p5_instance = function(p5c){
     };
 
     p5c.draw = function() {
-        p5c.background(0);
         if (!ready) {
+            p5c.background(0);
             p5c.fill(255);
             p5c.textAlign(p5c.CENTER);
             p5c.text("CLICK TO START", p5c.width / 2, p5c.height / 2);
         }else{
             //inject some graphics.
+            p5c.background(inner_tempo * 10);
+            let circle1 = p5c.circle(300, 300, 400);
+            c = color('magenta');
+            circle1.fill(c);
+
+
 
         }
 
@@ -133,7 +140,7 @@ let melody1_metro_generator = function* (){
 const main_melody_generator = melody1_metro_generator();
 
 let melody_loop_callback = function(transportTime){
-    let inner_tempo = main_melody_generator.next().value
+    inner_tempo = main_melody_generator.next().value
     console.log(inner_tempo);
     let curr_melody_note_index = melody1_notes[inner_tempo];
     let curr_melody_note = scaleNotes[curr_melody_note_index];
